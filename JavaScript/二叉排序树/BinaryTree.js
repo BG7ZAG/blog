@@ -1,4 +1,4 @@
-function BinaryTree() {
+function BinaryTree(item = '') {
     const Node = function (key) {
         this.key = key;
         this.left = null;
@@ -8,7 +8,7 @@ function BinaryTree() {
     let root = null;
 
     const insertNode = function (node, newNode) {
-        if (newNode.key < node.key) {
+        if ((item ? newNode.key[item] : newNode.key) < (item ? node.key[item] : node.key)) {
             if (node.left === null) {
                 node.left = newNode;
             } else {
@@ -161,8 +161,23 @@ function BinaryTree() {
     }
 }
 
-let nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13];
-let binaryTree = new BinaryTree();
+let nodes1 = [8, 3, 10, 1, 6, 14, 4, 7, 13];
+let nodes = [{
+            id: 1,
+            num: 34,
+        },{
+            id: 2,
+            num: 2,
+        },{
+            id: 3,
+            num: 4566,
+        },{
+            id: 4,
+            num: 23,
+        },];
+
+// 如果nodes数组中的元素为对象，则传入对象中需要比较的key，类型为String; 如果为 nodes1 则不用传值
+let binaryTree = new BinaryTree('num'); 
 nodes.forEach(key => {
     binaryTree.insert(key)
 });
